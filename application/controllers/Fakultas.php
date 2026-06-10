@@ -9,138 +9,127 @@ class Fakultas extends CI_Controller {
 			redirect('auth', 'refresh');
 		}
 
-		$this->load->model('MahasiswaModel');
+		$this->load->model('FakultasModel');
 	}
 
     public function index()
 	{
-        $data['mahasiswa'] = $this->MahasiswaModel->getAll();
+        $data['fakultas'] = $this->FakultasModel->getAll();
 		
-        $header['title'] = "Mahasiswa";
+        $header['title'] = "Fakultas";
 		$this->load->view('layout/header', $header);
-		$this->load->view('mahasiswa/index', $data);
+		$this->load->view('fakultas/index', $data);
 		$this->load->view('layout/footer');
 	}
 
 	public function tambah()
 	{
 		if ($this->input->post()) {
-			$this->form_validation->set_rules('mahasiswa_nim', 'NIM', 'required|numeric|min_length[10]|max_length[12]');
-			$this->form_validation->set_rules('mahasiswa_nama', 'Nama', 'required|min_length[3]|max_length[100]');
-			$this->form_validation->set_rules('mahasiswa_email', 'Email', 'required|valid_email');
-			$this->form_validation->set_rules('mahasiswa_password', 'Password', 'required|min_length[5]');
+			$this->form_validation->set_rules('fakultas_id', 'ID', 'required|numeric|is_unique[fakultas.fakultas_id]');
+			$this->form_validation->set_rules('fakultas_name', 'Nama', 'required|min_length[3]|max_length[100]');
 
 			if ($this->form_validation->run() === TRUE) {
 				$formulir = $this->input->post();
 
 				$data = [
-					'mahasiswa_nim' => $formulir['mahasiswa_nim'],
-					'mahasiswa_nama' => $formulir['mahasiswa_nama'],
-					'mahasiswa_email' => $formulir['mahasiswa_email'],
-					'mahasiswa_password' => sha1($formulir['mahasiswa_password']),
+					'fakultas_id' => $formulir['fakultas_id'],
+					'fakultas_name' => $formulir['fakultas_name'],
 				];
 
-				$this->MahasiswaModel->insert($data);
+				$this->FakultasModel->insert($data);
 				
 				$this->session->set_flashdata('swal', [
 					'icon' => 'success',
 					'title' => 'Berhasil!',
-					'text' => 'Data mahasiswa berhasil ditambahkan.'
+					'text' => 'Data fakultas berhasil ditambahkan.'
 				]);
 
-				redirect('mahasiswa');
+				redirect('fakultas');
 			}
 		}
 
-		$data['mahasiswa'] = null;
-		$data['action'] = base_url('mahasiswa/tambah');
+		$data['fakultas'] = null;
+		$data['action'] = base_url('fakultas/tambah');
 		$data['button'] = 'Simpan';
 		
-		$header['title'] = 'Tambah Mahasiswa';
+		$header['title'] = 'Tambah Fakultas';
 		$this->load->view('layout/header', $header);
-		$this->load->view('mahasiswa/form', $data);
+		$this->load->view('fakultas/form', $data);
 		$this->load->view('layout/footer');
 	}
 
 	public function ubah($id)
 	{
-		$mahasiswa = $this->MahasiswaModel->getById($id);
+		$fakultas = $this->FakultasModel->getById($id);
 
-		if (!$mahasiswa) {
+		if (!$fakultas) {
 			$this->session->set_flashdata('swal', [
 				'icon' => 'warning',
 				'title' => 'Tidak Ditemukan!',
-				'text' => 'Data mahasiswa tidak ditemukan.'
+				'text' => 'Data fakultas tidak ditemukan.'
 			]);
 
-			redirect('mahasiswa');
+			redirect('fakultas');
 		}
 
 		if ($this->input->post()) {
-			$this->form_validation->set_rules('mahasiswa_nim', 'NIM', 'required|numeric|min_length[10]|max_length[12]');
-			$this->form_validation->set_rules('mahasiswa_nama', 'Nama', 'required|min_length[3]|max_length[100]');
-			$this->form_validation->set_rules('mahasiswa_email', 'Email', 'required|valid_email');
-			$this->form_validation->set_rules('mahasiswa_password', 'Password', 'min_length[5]');
+			$this->form_validation->set_rules('fakultas_id', 'ID', 'required|numeric|is_unique[fakultas.fakultas_id]');
+			$this->form_validation->set_rules('fakultas_name', 'Nama', 'required|min_length[3]|max_length[100]');
 
 			if ($this->form_validation->run() === TRUE) {
 				$formulir = $this->input->post();
 
 				$data = [
-					'mahasiswa_nim' => $formulir['mahasiswa_nim'],
-					'mahasiswa_nama' => $formulir['mahasiswa_nama'],
-					'mahasiswa_email' => $formulir['mahasiswa_email'],
+					'fakultas_id' => $formulir['fakultas_id'],
+					'fakultas_name' => $formulir['fakultas_name'],
 				];
 
-				if (!empty($formulir['mahasiswa_password'])) {
-					$data['mahasiswa_password'] = sha1($formulir['mahasiswa_password']);
-				}
-
-				$this->MahasiswaModel->update($id, $data);
+				$this->FakultasModel->update($data);
 				
 				$this->session->set_flashdata('swal', [
 					'icon' => 'success',
 					'title' => 'Berhasil!',
-					'text' => 'Data mahasiswa berhasil diupdate.'
+					'text' => 'Data fakultas berhasil diupdate.'
 				]);
 
-				redirect('mahasiswa');
+				redirect('fakultas');
 			}
 
-			$mahasiswa = $this->input->post();
+			$fakultas = $this->input->post();
 		}
 
-		$data['mahasiswa'] = $mahasiswa;
-		$data['action'] = base_url('mahasiswa/ubah/' . $id);
+		$data['fakultas'] = $fakultas;
+		$data['action'] = base_url('fakultas/ubah/' . $id);
 		$data['button'] = 'Update';
 		
-		$header['title'] = 'Ubah Mahasiswa';
+		$header['title'] = 'Ubah Fakultas';
 		$this->load->view('layout/header', $header);
-		$this->load->view('mahasiswa/form', $data);
+		$this->load->view('fakultas/form', $data);
 		$this->load->view('layout/footer');
 	}
 
 	public function hapus($id)
 	{
-		$mahasiswa = $this->MahasiswaModel->getById($id);
+		$fakultas = $this->FakultasModel->getById($id);
 
-		if (!$mahasiswa) {
+		if (!$fakultas) {
 			$this->session->set_flashdata('swal', [
 				'icon' => 'warning',
 				'title' => 'Tidak Ditemukan!',
-				'text' => 'Data mahasiswa tidak ditemukan.'
+				'text' => 'Data fakultas tidak ditemukan.'
 			]);
 
-			redirect('mahasiswa');
+			redirect('fakultas');
 		}
 
-		$this->MahasiswaModel->delete($id);
+		$this->FakultasModel->delete($id);
 
 		$this->session->set_flashdata('swal', [
 			'icon' => 'warning',
 			'title' => 'Dihapus!',
-			'text' => 'Data mahasiswa berhasil dihapus.'
+			'text' => 'Data fakultas berhasil dihapus.'
 		]);
 
-		redirect('mahasiswa');
+		redirect('fakultas');
 	}
 }
