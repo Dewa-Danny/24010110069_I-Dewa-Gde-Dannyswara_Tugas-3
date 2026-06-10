@@ -11,6 +11,7 @@
 				<thead class="table-dark">
 					<tr>
 						<td>No.</td>
+						<td>ID</td>
 						<td>Nama</td>
 						<td>Aksi</td>
 					</tr>
@@ -19,6 +20,7 @@
                     <?php foreach ($fakultas as $key => $value): ?>
                         <tr>
                             <td><?php echo $key+1 ?>.</td>
+							<td><?php echo $value['fakultas_id'] ?></td>
                             <td><?php echo $value['fakultas_name'] ?></td>
                             <td>
                                 <a class="btn btn-warning btn-sm" href="<?php echo base_url('fakultas/ubah/'.$value['fakultas_id']) ?>">
