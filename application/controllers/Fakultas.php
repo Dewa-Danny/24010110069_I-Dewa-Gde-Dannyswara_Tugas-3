@@ -73,9 +73,13 @@ class Fakultas extends CI_Controller {
 		}
 
 		if ($this->input->post()) {
-			$this->form_validation->set_rules('fakultas_id', 'ID', 'required|numeric|is_unique[fakultas.fakultas_id]');
 			$this->form_validation->set_rules('fakultas_name', 'Nama', 'required|min_length[3]|max_length[100]');
-
+			
+			if ($this->input->post('fakultas_id') !=$id) {
+				$this->form_validation->set_rules('fakultas_id', 'ID', 'required|numeric|is_unique[fakultas.fakultas_id]');
+			} else {
+				$this->form_validation->set_rules('fakultas_id', 'ID', 'required|numeric');
+			}
 			if ($this->form_validation->run() === TRUE) {
 				$formulir = $this->input->post();
 
@@ -84,7 +88,7 @@ class Fakultas extends CI_Controller {
 					'fakultas_name' => $formulir['fakultas_name'],
 				];
 
-				$this->FakultasModel->update($data);
+				$this->FakultasModel->update($id, $data);
 				
 				$this->session->set_flashdata('swal', [
 					'icon' => 'success',
