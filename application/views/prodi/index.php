@@ -3,7 +3,7 @@
 		<div>
 			<h5 class="mb-0 fw-bold">Data Program Studi</h5>
 		</div>
-		<a class="btn btn-primary btn-lg fw-bold" href="<?php echo base_url('mahasiswa/tambah') ?>">Tambah</a>
+		<a class="btn btn-primary btn-lg fw-bold" href="<?php echo base_url('prodi/tambah') ?>">Tambah</a>
 	</div>
 	<div class="card-body">
 		<div class="table-responsive">
