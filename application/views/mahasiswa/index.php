@@ -12,8 +12,8 @@
 					<tr>
 						<td>No.</td>
 						<td>NIM</td>
-						<td>Nama</td>
-						<td>Email</td>
+						<td>Nama Mahasiswa</td>
+						<td>Email Mahasiswa</td>
 						<td>Aksi</td>
 					</tr>
 				</thead>

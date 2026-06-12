@@ -11,8 +11,8 @@
 				<thead class="table-dark">
 					<tr>
 						<td>No.</td>
-						<td>ID</td>
-						<td>Nama</td>
+						<td>ID Fakultas</td>
+						<td>Nama Fakultas</td>
 						<td>Aksi</td>
 					</tr>
 				</thead>

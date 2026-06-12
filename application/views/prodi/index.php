@@ -11,10 +11,10 @@
 				<thead class="table-dark">
 					<tr>
 						<td>No.</td>
-						<td>ID</td>
-						<td>Nama</td>
+						<td>ID Program Studi</td>
+						<td>Nama Program Studi</td>
 						<td>Strata</td>
-						<td>Fakultas</td>
+						<td>Nama Fakultas</td>
 						<td>Aksi</td>
 					</tr>
 				</thead>
@@ -24,7 +24,7 @@
                             <td><?php echo $key+1 ?>.</td>
                             <td><?php echo $value['prodi_id'] ?></td>
                             <td><?php echo $value['prodi_name'] ?></td>
-                            <td><span class="badge bg-info text-dark fw-bold"><?php echo $value['prodi_strata']?></span></td>
+                            <td><?php echo $value['prodi_strata']?></td>
                             <td><?php echo $value['fakultas_name'] ?></td>
                             <td>
                                 <a class="btn btn-warning btn-sm" href="<?php echo base_url('prodi/ubah/'.$value['prodi_id']) ?>">
