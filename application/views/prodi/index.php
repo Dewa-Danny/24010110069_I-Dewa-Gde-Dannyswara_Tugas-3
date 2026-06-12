@@ -1,7 +1,7 @@
 <div class="card shadow border-0 mb-4">
 	<div class="card-header bg-secondary text-white d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
 		<div>
-			<h5 class="mb-0 fw-bold">Data Mahasiswa</h5>
+			<h5 class="mb-0 fw-bold">Data Program Studi</h5>
 		</div>
 		<a class="btn btn-primary btn-lg fw-bold" href="<?php echo base_url('mahasiswa/tambah') ?>">Tambah</a>
 	</div>
