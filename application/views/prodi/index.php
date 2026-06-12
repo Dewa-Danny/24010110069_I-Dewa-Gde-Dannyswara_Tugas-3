@@ -11,24 +11,26 @@
 				<thead class="table-dark">
 					<tr>
 						<td>No.</td>
-						<td>NIM</td>
+						<td>ID</td>
 						<td>Nama</td>
-						<td>Email</td>
+						<td>Strata</td>
+						<td>Fakultas</td>
 						<td>Aksi</td>
 					</tr>
 				</thead>
 				<tbody>
-                    <?php foreach ($mahasiswa as $key => $value): ?>
+                    <?php foreach ($prodi as $key => $value): ?>
                         <tr>
                             <td><?php echo $key+1 ?>.</td>
-                            <td><?php echo $value['mahasiswa_nim'] ?></td>
-                            <td><?php echo $value['mahasiswa_nama'] ?></td>
-                            <td><?php echo $value['mahasiswa_email'] ?></td>
+                            <td><?php echo $value['prodi_id'] ?></td>
+                            <td><?php echo $value['prodi_name'] ?></td>
+                            <td><span class="badge bg-info text-dark fw-bold"><?php echo $value['prodi_strata']?></span></td>
+                            <td><?php echo $value['fakultas_name'] ?></td>
                             <td>
-                                <a class="btn btn-warning btn-sm" href="<?php echo base_url('mahasiswa/ubah/'.$value['mahasiswa_id']) ?>">
+                                <a class="btn btn-warning btn-sm" href="<?php echo base_url('prodi/ubah/'.$value['prodi_id']) ?>">
 									<i class="bi bi-pencil-square"></i>
 								</a>
-								<a class="btn btn-danger btn-sm btn-hapus" href="<?php echo base_url('mahasiswa/hapus/'.$value['mahasiswa_id']) ?>">
+								<a class="btn btn-danger btn-sm btn-hapus" href="<?php echo base_url('prodi/hapus/'.$value['prodi_id']) ?>">
 									<i class="bi bi-trash"></i>
 								</a>
                             </td>
